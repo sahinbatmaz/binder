@@ -108,6 +108,9 @@ USER root
 RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
 
+#RUN pip install --no-cache-dir notebook==6.0.1
+#RUN pip install --no-cache-dir --ignore-installed notebook==6.0.3
+RUN pip install --no-cache-dir --force-reinstall --no-deps notebook==6.0.3
 
 ##############################################################
 ##############################################################
