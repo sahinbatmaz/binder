@@ -13,11 +13,6 @@ RUN adduser --disabled-password \
     --gecos "Default user" \
     --uid ${NB_UID} \
     ${NB_USER}
-    
-COPY . ${HOME}
-USER root
-RUN chown -R ${NB_UID} ${HOME}
-USER ${NB_USER}
 
 ##############################################################
 ##############################################################
@@ -118,6 +113,12 @@ RUN echo 'c.ContentsManager.notebook_extensions = "ipynb,py"' >> /root/.jupyter/
 
 ##############################################################
 ##############################################################
+
+    
+COPY . ${HOME}
+USER root
+RUN chown -R ${NB_UID} ${HOME}
+USER ${NB_USER}
 
 # WORKDIR /home/notebooks
 # CMD ["jupyter", "notebook","--ip","0.0.0.0"]
