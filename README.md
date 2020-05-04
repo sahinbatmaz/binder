@@ -4,6 +4,10 @@
 
 ------
 
+#### dockerfile notes
+
+- https://mybinder.readthedocs.io/en/latest/tutorials/dockerfile.html#preparing-your-dockerfile
+
 #### memory and core information
 
 ```
