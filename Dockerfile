@@ -48,7 +48,7 @@ RUN apt-get install lazygit
 
 # RUN curl -o /Anaconda3-2020.02-Linux-x86_64.sh https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
 RUN wget -P /  https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
-RUN /Anaconda3-2020.02-Linux-x86_64.sh -b
+RUN bash /Anaconda3-2020.02-Linux-x86_64.sh -b
 RUN rm /Anaconda3-2020.02-Linux-x86_64.sh
 ENV PATH /root/anaconda3/bin:$PATH
 
