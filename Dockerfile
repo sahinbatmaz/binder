@@ -1,10 +1,5 @@
 FROM ubuntu:16.04
 
-RUN echo "v1"
-ARG proxy
-ENV http_proxy $proxy 
-ENV https_proxy $proxy 
-
 ##############################################################
 ##############################################################
 
@@ -51,9 +46,9 @@ RUN apt-get install lazygit
 ##############################################################
 ##############################################################
 
-COPY Anaconda3-2019.10-Linux-x86_64.sh /Anaconda3-2019.10-Linux-x86_64.sh
-RUN /Anaconda3-2019.10-Linux-x86_64.sh -b
-RUN rm /Anaconda3-2019.10-Linux-x86_64.sh
+RUN curl -o /Anaconda3-2020.02-Linux-x86_64.sh https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+RUN /Anaconda3-2020.02-Linux-x86_64.sh -b
+RUN rm /Anaconda3-2020.02-Linux-x86_64.sh
 ENV PATH /root/anaconda3/bin:$PATH
 
 RUN conda config --set ssl_verify false
@@ -98,5 +93,6 @@ RUN echo 'c.ContentsManager.notebook_extensions = "ipynb,py"' >> /root/.jupyter/
 ##############################################################
 
 WORKDIR /home/notebooks
-CMD jupyter notebook --no-browser --allow-root --NotebookApp.token='' --notebook-dir=/home/notebooks/ --port=9000 --ip=0.0.0.0 --debug
+CMD jupyter notebook --no-browser --allow-root --NotebookApp.token='' --notebook-dir=/home/notebooks/ --ip=0.0.0.0 --debug
+# CMD jupyter notebook --no-browser --allow-root --NotebookApp.token='' --notebook-dir=/home/notebooks/ --port=9000 --ip=0.0.0.0 --debug
 
