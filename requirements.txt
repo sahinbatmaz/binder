@@ -2,5 +2,6 @@ matplotlib
 seaborn
 numpy
 pandas
+spacy
 rasa
 transformers
