@@ -94,6 +94,7 @@ RUN echo 'c.ContentsManager.notebook_extensions = "ipynb,py"' >> /root/.jupyter/
 ##############################################################
 
 WORKDIR /home/notebooks
-CMD jupyter notebook --notebook-dir=/home/notebooks/ --ip=0.0.0.0
+CMD ["jupyter", "notebook","--ip","0.0.0.0"]
+# CMD jupyter notebook --notebook-dir=/home/notebooks/ --ip=0.0.0.0
 # CMD jupyter notebook --no-browser --allow-root --NotebookApp.token='' --notebook-dir=/home/notebooks/ --port=9000 --ip=0.0.0.0 --debug
 
