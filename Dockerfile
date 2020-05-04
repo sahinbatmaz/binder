@@ -92,9 +92,27 @@ RUN echo 'c.ContentsManager.notebook_extensions = "ipynb,py"' >> /root/.jupyter/
 
 ##############################################################
 ##############################################################
+ARG NB_UID=1000
+ENV USER ${NB_USER}
+ENV NB_UID ${NB_UID}
+ENV HOME /home/${NB_USER}
 
-WORKDIR /home/notebooks
-CMD ["jupyter", "notebook","--ip","0.0.0.0"]
+RUN adduser --disabled-password \
+    --gecos "Default user" \
+    --uid ${NB_UID} \
+    ${NB_USER}
+    
+COPY . ${HOME}
+USER root
+RUN chown -R ${NB_UID} ${HOME}
+USER ${NB_USER}
+
+
+##############################################################
+##############################################################
+
+# WORKDIR /home/notebooks
+# CMD ["jupyter", "notebook","--ip","0.0.0.0"]
 # CMD jupyter notebook --notebook-dir=/home/notebooks/ --ip=0.0.0.0
 # CMD jupyter notebook --no-browser --allow-root --NotebookApp.token='' --notebook-dir=/home/notebooks/ --port=9000 --ip=0.0.0.0 --debug
 
