@@ -6,6 +6,7 @@
 
 #### memory and core information
 
-- !free -mh
-
-- !cat /proc/cpuinfo | grep processor | wc -l
+```
+! free -mh
+! cat /proc/cpuinfo | grep processor | wc -l
+```
