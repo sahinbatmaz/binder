@@ -10,6 +10,7 @@
 - https://github.com/binder-examples/minimal-dockerfile/blob/master/Dockerfile
 - https://github.com/binder-project/binder-build-core/blob/master/images/base/Dockerfile
 - https://github.com/binder-project/binder-build-core/blob/master/images/python/3.5/Dockerfile
+- https://mybinder.readthedocs.io/en/latest/config_files.html
 
 #### memory and core information
 
