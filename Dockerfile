@@ -10,6 +10,8 @@ RUN apt-get install -y build-essential
 RUN apt-get install -y git && git config --global http.sslverify false
 RUN apt-get install -y net-tools
 
+RUN apt install -y zsh
+
 RUN add-apt-repository ppa:lazygit-team/release
 RUN apt-get update
 RUN apt-get install lazygit
@@ -28,7 +30,7 @@ ENV USER main
 WORKDIR $HOME
 
 
-RUN apt install -y zsh
+# RUN apt install -y zsh
 RUN sh -c "$(wget --no-check-certificate -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 RUN apt install -y fonts-powerline
 RUN cd ~/.oh-my-zsh/custom/plugins/ && \
