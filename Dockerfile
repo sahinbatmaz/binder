@@ -106,3 +106,8 @@ RUN echo 'c.ContentsManager.notebook_extensions = "ipynb,py"' >> ~/.jupyter/jupy
 
 ##############################################################
 ##############################################################
+
+WORKDIR $HOME/workspace
+COPY . .
+
+
