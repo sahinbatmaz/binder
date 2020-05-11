@@ -1,7 +1,25 @@
-FROM python:3.7-slim
+# FROM python:3.7-slim
+FROM ubuntu:16.04
+
+# RUN curl -o /Anaconda3-2020.02-Linux-x86_64.sh https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+RUN wget -P /  https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+RUN bash /Anaconda3-2020.02-Linux-x86_64.sh -b
+RUN rm /Anaconda3-2020.02-Linux-x86_64.sh
+ENV PATH /root/anaconda3/bin:$PATH
+
+
+##############################################################
+##############################################################
+
+
 # install the notebook package
 RUN pip install --no-cache --upgrade pip && \
     pip install --no-cache notebook
+
+
+##############################################################
+##############################################################
+
 
 # create user with a home directory
 ARG NB_USER
