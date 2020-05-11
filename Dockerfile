@@ -1,4 +1,3 @@
-# FROM python:3.7-slim
 FROM ubuntu:16.04
 
 RUN apt-get update
@@ -13,15 +12,28 @@ RUN apt-get install -y net-tools
 RUN apt install -y zsh
 RUN apt install -y fonts-powerline
 
+RUN apt-get install -y openjdk-8-jdk openjdk-8-jre
+
+##############################################################
+##############################################################
+
 RUN add-apt-repository ppa:lazygit-team/release
 RUN apt-get update
 RUN apt-get install lazygit
+
+
+##############################################################
+##############################################################
 
 RUN apt-get install -y locales
 RUN locale-gen en_US.UTF-8  
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8
+
+
+##############################################################
+##############################################################
 
 RUN useradd -m -s /bin/bash main
 USER main
@@ -30,6 +42,9 @@ ENV SHELL /bin/bash
 ENV USER main
 WORKDIR $HOME
 
+
+##############################################################
+##############################################################
 
 # RUN apt install -y zsh
 RUN sh -c "$(wget --no-check-certificate -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -53,6 +68,9 @@ RUN sed -i 's/ZSH_THEME="robyrussell"/ZSH_THEME="agnoster"/g' ~/.zshrc
 RUN sed -i 's/plugins=(git)/plugins=(git warhol zsh-syntax-highlighting zsh-autosuggestions)/g' ~/.zshrc
 
 
+##############################################################
+##############################################################
+
 # RUN curl -o /Anaconda3-2020.02-Linux-x86_64.sh https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
 # RUN wget -P /  https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
 RUN wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
@@ -63,7 +81,8 @@ RUN rm Anaconda3-2020.02-Linux-x86_64.sh
 ENV PATH $HOME/anaconda3/bin:$PATH
 RUN pip install --upgrade pip
 
-
+##############################################################
+##############################################################
 
 RUN conda install -c conda-forge jupyter_contrib_nbextensions && \
     conda install -c conda-forge jupyter_nbextensions_configurator
@@ -87,26 +106,3 @@ RUN echo 'c.ContentsManager.notebook_extensions = "ipynb,py"' >> ~/.jupyter/jupy
 
 ##############################################################
 ##############################################################
-
-
-# # install the notebook package
-# RUN pip install --no-cache --upgrade pip && \
-#     pip install --no-cache --force-reinstall notebook
-
-
-##############################################################
-##############################################################
-
-
-# # create user with a home directory
-# ARG NB_USER
-# ARG NB_UID
-# ENV USER ${NB_USER}
-# ENV HOME /home/${NB_USER}
-
-# RUN adduser --disabled-password \
-#     --gecos "Default user" \
-#     --uid ${NB_UID} \
-#     ${NB_USER}
-# WORKDIR ${HOME}
-# USER ${USER}
