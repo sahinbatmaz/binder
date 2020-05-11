@@ -11,6 +11,7 @@ RUN apt-get install -y git && git config --global http.sslverify false
 RUN apt-get install -y net-tools
 
 RUN apt install -y zsh
+RUN apt install -y fonts-powerline
 
 RUN add-apt-repository ppa:lazygit-team/release
 RUN apt-get update
@@ -32,7 +33,7 @@ WORKDIR $HOME
 
 # RUN apt install -y zsh
 RUN sh -c "$(wget --no-check-certificate -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-RUN apt install -y fonts-powerline
+# RUN apt install -y fonts-powerline
 RUN cd ~/.oh-my-zsh/custom/plugins/ && \
     git clone https://github.com/unixorn/warhol.plugin.zsh.git warhol && \
     echo 'export LS_COLORS="di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"' >> ~/.zshrc
