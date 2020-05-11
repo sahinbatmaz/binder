@@ -20,7 +20,8 @@ ENV SHELL /bin/bash
 ENV USER main
 WORKDIR $HOME
 
-ENV PATH /root/anaconda3/bin:$PATH
+#ENV PATH /root/anaconda3/bin:$PATH
+ENV PATH $HOME/anaconda3/bin:$PATH
 RUN pip install --upgrade pip
 
 ##############################################################
