@@ -4,21 +4,19 @@ FROM ubuntu:16.04
 RUN apt-get update
 RUN apt-get install -y wget
 
-# RUN curl -o /Anaconda3-2020.02-Linux-x86_64.sh https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
-RUN wget -P /  https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
-RUN bash /Anaconda3-2020.02-Linux-x86_64.sh -b
-RUN rm /Anaconda3-2020.02-Linux-x86_64.sh
-
 
 RUN useradd -m -s /bin/bash main
-
-# EXPOSE 8888
-
 USER main
 ENV HOME /home/main
 ENV SHELL /bin/bash
 ENV USER main
 WORKDIR $HOME
+
+# RUN curl -o /Anaconda3-2020.02-Linux-x86_64.sh https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+# RUN wget -P /  https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+RUN wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+RUN bash Anaconda3-2020.02-Linux-x86_64.sh -b
+RUN rm Anaconda3-2020.02-Linux-x86_64.sh
 
 #ENV PATH /root/anaconda3/bin:$PATH
 ENV PATH $HOME/anaconda3/bin:$PATH
